@@ -1,5 +1,5 @@
 import unittest
-from config import case_path,report_path
+from config import case_path, report_path
 from HtmlTestRunner import HTMLTestRunner
 from html_outfile import html_outfile
 
@@ -10,10 +10,8 @@ for test_suite in discover:
     for test_case in test_suite:
         testunit.addTests(test_case)
 
-
-with open(report_path,'w') as f:
-    runner=HTMLTestRunner(stream=f)
-    result= runner.run(testunit)
+with open(report_path, 'w') as f:
+    runner = HTMLTestRunner(stream=f)
+    result = runner.run(testunit)
 
 html_outfile()
-
