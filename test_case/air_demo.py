@@ -28,12 +28,12 @@ class WSTestcase(unittest.TestCase):
 
     def test_1(self):
         driver = self.driver
+        driver.maximize_window()
         driver.get("https://yangcong345.com/#/studentPage")
         driver.find_element_by_xpath("//span[@title='登录']").click()
         driver.assert_exist("//*[@id=\"normal\"]/button", "xpath", "进入登录页")
 
     def test_2(self):
-        raise '1111'
         print('test2')
 
     def tearDown(self) -> None:
