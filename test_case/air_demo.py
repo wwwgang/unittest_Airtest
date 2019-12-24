@@ -11,9 +11,6 @@ import unittest
 from config import chromedrive_path, log_path
 
 if not cli_setup():
-    # auto_setup(__file__, logdir="/Users/yangcong/Desktop/log", devices=[
-    #         "Android:///",
-    # ])
     auto_setup(__file__, logdir=log_path)
 
 
@@ -29,6 +26,8 @@ class WSTestcase(unittest.TestCase):
     def test_1(self):
         driver = self.driver
         driver.maximize_window()
+
+        # 以下可修改
         driver.get("https://yangcong345.com/#/studentPage")
         driver.find_element_by_xpath("//span[@title='登录']").click()
         driver.assert_exist("//*[@id=\"normal\"]/button", "xpath", "进入登录页")
@@ -46,9 +45,3 @@ class WSTestcase(unittest.TestCase):
 
 
 auto_setup(__file__)
-
-# generate html report
-# from airtest.report.report import simple_report
-#
-# print(log_path)
-# simple_report(__file__, logpath=log_path,logfile='log.txt',output='log.html')
