@@ -14,6 +14,6 @@
 
 4、在test_case中编写case可以借助airtestIDE进行录制，复制粘贴其中脚本代码    
 
-5、在reports.txt和reports文件夹中可查看unittest报告 
+5、在reports.html中可查看unittest报告 
 
 6、在__init__.log中存在log.html可查看airtest生成的case报告
