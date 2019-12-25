@@ -19,10 +19,8 @@ for test_suite in discover:
     for test_case in test_suite:
         testunit.addTests(test_case)
 
-# 执行unittest任务输出report.txt和test_report
+# 执行unittest任务输出report.html
 with open(report_path, 'w') as f:
-    # 原版报告
-    # runner = HTMLTestRunner(stream=f)
     # 优化版报告
     runner = HTMLTestRunner_PY3.HTMLTestRunner(stream=f, title='自动化测试报告', description='自动化测试报告')
     result = runner.run(testunit)

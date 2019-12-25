@@ -16,10 +16,6 @@ def del_file():
             shutil.rmtree(log)
     except Exception as e:
         print(e)
-    # try:
-    #     shutil.rmtree(rm_reports)
-    # except Exception as e:
-    #     print(e)
     try:
         os.remove(rm_reports_txt)
     except Exception as e:
