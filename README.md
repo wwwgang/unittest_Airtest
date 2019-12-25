@@ -1,8 +1,6 @@
 # unittest_Airtest      
 
-##web ui自动化     
-
-##(unittest+airtest+poco+html-testRunner+airtest-selenium+selenium)  
+##web ui自动化(unittest+airtest+poco+html-testRunner+airtest-selenium+selenium)  
 
 `使用说明：`     
 
