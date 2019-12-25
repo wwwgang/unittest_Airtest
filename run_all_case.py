@@ -2,29 +2,13 @@
 __author__ = "yangcong"
 
 import unittest
-from config import case_path, report_path, rm_log, rm_logs, rm_reports_txt
-from html_outfile import html_outfile
-import shutil
+from config import case_path, report_path
+from tools.html_outfile import html_outfile
 from tools import HTMLTestRunner_PY3
+from tools.del_file import del_file
 
 # 删除log&*.log&reports&report.txt
-try:
-    shutil.rmtree(rm_log)
-except Exception as e:
-    print(e)
-try:
-    for log in rm_logs:
-        shutil.rmtree(log)
-except Exception as e:
-    print(e)
-# try:
-#     shutil.rmtree(rm_reports)
-# except Exception as e:
-#     print(e)
-try:
-    shutil.rmtree(rm_reports_txt)
-except Exception as e:
-    print(e)
+del_file()
 
 # 创建存储test_case容器
 testunit = unittest.TestSuite()
