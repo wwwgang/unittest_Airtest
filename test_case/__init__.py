@@ -3,6 +3,7 @@ __author__ = "yangcong"
 
 from airtest.core.api import *
 
+from selenium.webdriver.common.keys import Keys
 from airtest_selenium.proxy import WebChrome
 from airtest.cli.parser import cli_setup
 import unittest
