@@ -4,7 +4,7 @@ from HtmlTestRunner import HTMLTestRunner
 from html_outfile import html_outfile
 import shutil
 
-# 删除log&*.log&reports文件夹
+# 删除log&*.log&reports&report.txt
 try:
     shutil.rmtree(rm_log)
 except Exception as e:
