@@ -1,18 +1,25 @@
 import unittest
-from config import case_path, report_path, rm_log, rm_logs
+from config import case_path, report_path, rm_log, rm_logs, rm_reports, rm_reports_txt
 from HtmlTestRunner import HTMLTestRunner
 from html_outfile import html_outfile
 import shutil
 
-# 删除log和*.log文件夹
+# 删除log&*.log&reports文件夹
 try:
     shutil.rmtree(rm_log)
 except Exception as e:
     print(e)
-print(rm_logs)
 try:
     for log in rm_logs:
         shutil.rmtree(log)
+except Exception as e:
+    print(e)
+try:
+    shutil.rmtree(rm_reports)
+except Exception as e:
+    print(e)
+try:
+    shutil.rmtree(rm_reports_txt)
 except Exception as e:
     print(e)
 
