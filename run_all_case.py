@@ -7,7 +7,7 @@ from tools.html_outfile import html_outfile
 from tools import HTMLTestRunner_PY3
 from tools.del_file import del_file
 
-# 删除log&*.log&reports&report.txt
+# 删除log&*.log&report.html
 del_file()
 
 # 创建存储test_case容器
