@@ -1,7 +1,7 @@
 # -*- encoding=utf8 -*-
 __author__ = "yangcong"
 
-import shutil
+import shutil, os
 from config import rm_log, rm_logs, rm_reports_txt
 
 
@@ -21,9 +21,10 @@ def del_file():
     # except Exception as e:
     #     print(e)
     try:
-        shutil.rmtree(rm_reports_txt)
+        os.remove(rm_reports_txt)
     except Exception as e:
         print(e)
+
 
 if __name__ == '__main__':
     del_file()
