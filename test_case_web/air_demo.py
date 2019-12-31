@@ -1,7 +1,7 @@
 # -*- encoding=utf8 -*-
 __author__ = "yangcong"
 
-from test_case import *
+from test_case_web import *
 
 
 class WSTestcase(unittest.TestCase):
@@ -21,9 +21,6 @@ class WSTestcase(unittest.TestCase):
         driver.get("https://yangcong345.com/#/studentPage")
         driver.find_element_by_xpath("//span[@title='登录']").click()
         driver.assert_exist("//*[@id=\"normal\"]/button", "xpath", "进入登录页")
-
-    def test_2(self):
-        print('test2')
 
     def tearDown(self) -> None:
         self.driver.close()

@@ -1,7 +1,7 @@
 # -*- encoding=utf8 -*-
 __author__ = "yangcong"
 
-from test_case import *
+from test_case_web import *
 
 
 class WSTestcase(unittest.TestCase):
@@ -24,7 +24,7 @@ class WSTestcase(unittest.TestCase):
         driver.assert_exist("//*[@id=\"root\"]/div/div/div/div/div/div/button/span", "xpath", "获取验码.")
         driver.assert_exist("//button[@type='submit']", "xpath", "登录.")
         driver.find_element_by_xpath("//input[@placeholder='请输入手机号']").send_keys('15311480776')
-        driver.find_element_by_xpath("//input[@placeholder='请输入验证码']").send_keys('**')
+        driver.find_element_by_xpath("//input[@placeholder='请输入验证码']").send_keys(verification_code)
         driver.find_element_by_xpath("//button[@type='submit']").click()
         driver.assert_exist("//*[@id=\"root\"]/div/div[2]/div/div/div/div/img", "xpath", "大头像.")
         driver.assert_exist("//*[@id=\"root\"]/div/div[2]/div/div/div/div/div/span", "xpath", "用户名.")
