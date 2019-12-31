@@ -14,6 +14,7 @@ def html_outfile(py_path, log_root_path, out_file):
 
 
 def son_logs():
+    # 查分报告输出
     for c in cases_path:
         for l in logs_path:
             try:
@@ -26,6 +27,7 @@ def son_logs():
 
 
 def dad_logs():
+    # 总报告输出
     jpgs = []
     file = open(airtest_result + '/log.txt', 'a')
     for l in logs_path:
