@@ -3,12 +3,16 @@ __author__ = "yangcong"
 
 import unittest
 from config import case_path, report_path
-from tools.html_outfile import html_outfile
+from tools.html_outfile import son_logs, dad_logs
+
 from tools import HTMLTestRunner_PY3
 from tools.del_file import del_file
+from tools.make_file import make_file
 
 # 删除log&*.log&report.html
 del_file()
+# 创建log文件夹
+make_file()
 
 # 创建存储test_case容器
 testunit = unittest.TestSuite()
@@ -26,4 +30,5 @@ with open(report_path, 'w') as f:
     result = runner.run(testunit)
 
 # 输出test_case报告
-html_outfile()
+son_logs()
+dad_logs()

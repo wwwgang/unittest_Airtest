@@ -4,7 +4,15 @@ chromedrive_path = os.path.dirname(__file__) + '/tools/chromedriver'
 
 log_path = os.path.dirname(__file__) + '/log'
 
+logs_path = glob.glob(log_path + '/*')
+
+airtest_result = log_path + '/__init__.py'
+
 case_path = os.path.dirname(__file__) + '/test_case_web'
+
+cases_path = glob.glob(case_path + '/air*.py')
+
+out_files = 'log.html'
 
 report_path = os.path.dirname(__file__) + '/report.html'
 
@@ -14,7 +22,7 @@ rm_logs = glob.glob(os.path.dirname(__file__) + r'/*log')
 
 rm_reports_txt = os.path.dirname(__file__) + '/report.html'
 
-verification_code='**'
+verification_code = '**'
 
 onionsToken = r'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZTRjZDgwMzMwY2ExODRlZGQwNGVlOSIsImlhdCI6MTU3NzcwMTg1MCwiZXhwIjoxNTc4OTExNDUwfQ.1bvCTvu_4qGR15f0Mr5kF_97I6f--WBAEbwOKy639q4'
 

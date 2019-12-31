@@ -9,6 +9,4 @@ from airtest.cli.parser import cli_setup
 import unittest
 from config import chromedrive_path, log_path, verification_code
 from tools.adminlogin import admin_login
-
-if not cli_setup():
-    auto_setup(__file__, logdir=log_path)
+import os

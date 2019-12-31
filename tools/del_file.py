@@ -13,7 +13,10 @@ def del_file():
         print(e)
     try:
         for log in rm_logs:
-            shutil.rmtree(log)
+            try:
+                shutil.rmtree(log)
+            except Exception as e:
+                print(e)
     except Exception as e:
         print(e)
     try:
