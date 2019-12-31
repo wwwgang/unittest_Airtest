@@ -29,6 +29,6 @@ with open(report_path, 'w') as f:
     runner = HTMLTestRunner_PY3.HTMLTestRunner(stream=f, title='自动化测试报告', description='自动化测试报告')
     result = runner.run(testunit)
 
-# 输出test_case报告
-son_logs()
-dad_logs()
+# # 输出test_case报告
+# son_logs()
+# dad_logs()
