@@ -3,6 +3,7 @@ __author__ = "yangcong"
 
 import shutil, os
 from config import rm_log, rm_logs, rm_reports_txt
+from tools.make_file import make_file
 
 
 def del_file():
@@ -27,3 +28,4 @@ def del_file():
 
 if __name__ == '__main__':
     del_file()
+    # make_file()
