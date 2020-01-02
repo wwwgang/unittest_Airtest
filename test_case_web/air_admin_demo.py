@@ -2,7 +2,6 @@
 __author__ = "yangcong"
 
 from test_case_web import *
-from tools.general_assertion import general_assertion_admin
 
 
 class WSTestcase(unittest.TestCase):

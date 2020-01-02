@@ -10,3 +10,4 @@ import unittest
 from config import chromedrive_path, log_path, verification_code
 from tools.admin_login import admin_login
 import os
+from tools.general_assertion import general_assertion_admin
