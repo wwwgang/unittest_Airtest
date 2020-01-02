@@ -21,6 +21,6 @@
 
 6、在reports.html中可查看unittest报告 
 
-7、在__init__.log中存在log.html可查看全部case的airtest报告
+7、在__init__.log中存在log.html可查看全部case的airtest报告   
 
 8、在项目根目录下，会生成对应case的单py文件的airtest报告，测试报告仍为log.html
