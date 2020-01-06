@@ -14,7 +14,7 @@ class WSTestcase(unittest.TestCase):
         self.driver = WebChrome(chromedrive_path)
         self.driver.implicitly_wait(20)
 
-    def test_1(self):
+    def test_add_plan(self):
         driver = self.driver
         driver.maximize_window()
 
@@ -69,6 +69,15 @@ class WSTestcase(unittest.TestCase):
 
         driver.assert_exist("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/button", "xpath",
                             "校验“新建”")
+
+        driver.assert_exist("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li/a",
+                            "xpath", "校验“分页-上一页”")
+
+        driver.assert_exist("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[2]/a",
+                            "xpath", "校验“分页第一页”")
+
+        driver.assert_exist("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[3]/a",
+                            "xpath", "校验“分页-下一页”")
 
     def tearDown(self) -> None:
         self.driver.close()
