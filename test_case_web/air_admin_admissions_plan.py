@@ -78,6 +78,40 @@ class WSTestcase(unittest.TestCase):
 
         driver.assert_exist("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[3]/a",
                             "xpath", "校验“分页-下一页”")
+        # 点击新建按钮
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/button").click()
+
+        # 班级类型选择免费版
+        driver.find_element_by_xpath("//*[@id=\"classType\"]/div/div").click()
+        driver.find_element_by_xpath("/html/body/div[2]/div/div/div/ul/li[7]").click()
+        # 是否付费选择否
+        driver.find_element_by_xpath("//input[@value='0']").click()
+        # 输入招生计划名称
+        driver.find_element_by_xpath("//input[@placeholder='请输入有效的招生计划名称']").send_keys(
+            "自动化测试" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+        # 招生开始时间
+        driver.find_element_by_xpath("//*[@id=\"startTime\"]/div/input").click()
+        driver.find_element_by_xpath("/html/body/div[3]/div/div/div/div/div/div/input").send_keys(
+            time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+        driver.find_element_by_xpath("//body").click()
+
+        # 招生结束时间
+        driver.find_element_by_xpath("//*[@id=\"endTime\"]/div/input").click()
+        driver.find_element_by_xpath("/html/body/div[4]/div/div/div/div/div[1]/div/input").send_keys(
+        time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+        driver.find_element_by_xpath("//body").click()
+
+        # 平均分班
+        driver.find_element_by_xpath("//*[@id=\"classRules\"]/div/div").click()
+        driver.find_element_by_xpath("/html/body/div[5]/div/div/div/ul/li[2]").click()
+        # 关联招生主页1
+        driver.find_element_by_xpath("//button[@type='button']").click()
+
+        driver.find_element_by_xpath(
+            "/html/body/div[6]/div/div[2]/div/div[2]/div[2]/div/div/div/div/div/div/div[2]/table/tbody/tr[1]/td[1]/span/label/span").click()
+        driver.find_element_by_xpath("/html/body/div[6]/div/div[2]/div/div[2]/div[3]/button[2]").click()
+        # 保存
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[8]/div/div/span/button[1]").click()
 
     def tearDown(self) -> None:
         self.driver.close()
