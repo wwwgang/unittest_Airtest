@@ -23,4 +23,8 @@
 
 7、在__init__.log中存在log.html可查看全部case的airtest报告   
 
-8、在项目根目录下，会生成对应case的单py文件的airtest报告，测试报告仍为log.html
+8、在项目根目录下，会生成对应case的单py文件的airtest报告，测试报告仍为log.html  
+
+## android ui 自动化
+    
+chomd +x /Users/yangcong/PycharmProjects/unittest_Airtest/venv/lib/python3.6/site-packages/airtest/core/android/static/adb/mac/adb

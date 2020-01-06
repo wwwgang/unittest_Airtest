@@ -1,5 +1,6 @@
 import os, glob
 
+'''WEB的配置'''
 chromedrive_path = os.path.dirname(__file__) + '/tools/chromedriver'
 
 log_path = os.path.dirname(__file__) + '/log'
@@ -42,3 +43,10 @@ localstorage_list = [
     {'key': 'antd-pro-authority',
      'value': antd_pro_authority},
 ]
+
+'''ADNROID的配置'''
+android_case_path = os.path.dirname(__file__) + '/test_case_android'
+
+android_log_path = os.path.dirname(__file__) + '/log'
+
+android_cases_path = glob.glob(android_case_path + '/air*.py')

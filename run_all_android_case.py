@@ -2,7 +2,7 @@
 __author__ = "yangcong"
 
 import unittest
-from config import case_path, report_path
+from config import android_case_path, report_path
 
 from tools import HTMLTestRunner_PY3
 from tools.del_file import del_file
@@ -17,7 +17,7 @@ make_file()
 testunit = unittest.TestSuite()
 
 # 将test_case添加至容器
-discover = unittest.defaultTestLoader.discover(case_path, pattern='air*.py', top_level_dir=None)
+discover = unittest.defaultTestLoader.discover(android_case_path, pattern='air*.py', top_level_dir=None)
 for test_suite in discover:
     for test_case in test_suite:
         testunit.addTests(test_case)

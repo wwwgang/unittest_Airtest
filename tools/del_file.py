@@ -28,4 +28,4 @@ def del_file():
 
 if __name__ == '__main__':
     del_file()
-    # make_file()
+    make_file()
