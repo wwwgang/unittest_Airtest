@@ -60,4 +60,4 @@ class WSTestcase(unittest.TestCase):
 # from airtest.report.report import simple_report
 # simple_report(__file__, logpath="/Users/yangcong/Desktop/andlog")
 
-unittest.main()
+# unittest.main()
