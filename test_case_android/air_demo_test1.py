@@ -9,9 +9,7 @@ class WSTestcase(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         if not cli_setup():
-            auto_setup(__file__, logdir=android_log_path + '/' + os.path.basename(__file__), devices=[
-                "Android://127.0.0.1:5037",
-            ])
+            auto_setup(__file__, logdir=android_log_path + '/' + os.path.basename(__file__), devices=android_address)
 
     def setUp(self) -> None:
         self.poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)

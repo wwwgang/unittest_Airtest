@@ -50,3 +50,5 @@ android_case_path = os.path.dirname(__file__) + '/test_case_android'
 android_log_path = os.path.dirname(__file__) + '/log'
 
 android_cases_path = glob.glob(android_case_path + '/air*.py')
+
+android_address = ["Android://127.0.0.1:5037", ]
