@@ -79,13 +79,13 @@ class WSTestcase(unittest.TestCase):
         t2 = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         driver.find_element_by_xpath("/html/body/div[3]/div/div/div/div/div/div/input").send_keys(
             t2)
-        driver.find_element_by_xpath("//body").click()
+        driver.find_element_by_xpath("/html/body/div[3]/div/div/div/div/div[2]/div[3]/span/a[3]").click()
         # 输入招生结束时间
         driver.find_element_by_xpath("//*[@id=\"endTime\"]/div/input").click()
         t3 = datetime.datetime.fromtimestamp(time.time() + 86400).strftime("%Y-%m-%d %H:%M:%S")
         driver.find_element_by_xpath("/html/body/div[4]/div/div/div/div/div[1]/div/input").send_keys(
             t3)
-        driver.find_element_by_xpath("//body").click()
+        driver.find_element_by_xpath("/html/body/div[4]/div/div/div/div/div[2]/div[3]/span/a[3]").click()
         # 选择平均分班
         driver.find_element_by_xpath("//*[@id=\"classRules\"]/div/div").click()
         driver.find_element_by_xpath("/html/body/div[5]/div/div/div/ul/li[2]").click()
