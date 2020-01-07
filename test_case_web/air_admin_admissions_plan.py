@@ -109,6 +109,89 @@ class WSTestcase(unittest.TestCase):
         # 断言数据添加是否成功
         assert_equal(check_save_istrue(driver, t1, t2, t3), True, '通用断言：验证添加数据是否成功')
 
+    def test_view_plan(self):
+        driver = self.driver
+        driver.maximize_window()
+        # admin登录
+        login = admin_login(driver)
+        login.login()
+        driver.get("http://10.8.8.8/admin5/configure/admission")
+        # 通用断言
+        ass = general_assertion_admin(driver)
+        ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
+        ass.check_url_admin()  # '通用断言：验证域名是否存在"http://10.8.8.8"'
+        ass.check_page_source_admin()  # '通用断言：验证页面中是否存在"测试环境"'
+        ass.check_user_info_admin()  # "通用断言：验证页面右上角是否存在'用户头像'" 和 "通用断言：验证页面右上角是否存在'登录用户名'"
+        ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
+
+        driver.assert_exist(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/div/div/div/table/tbody/tr[1]/td[8]/button",
+            "xpath", "校验是否存在查看按钮")
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/div/div/div/table/tbody/tr[1]/td[8]/button").click()
+
+        def check_is_not_null(driver):
+            # 招生计划标题
+            a = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/h2[1]").text.split("：", 1)[1]
+            # 招生计划ID
+            b = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[1]/div[1]/span").text.split("：",
+                                                                                                                   1)[1]
+            # 最后修改时间
+            c = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[1]/div[2]/span").text.split("：",
+                                                                                                                   1)[1]
+            # 最后修改人
+            d = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[1]/div[3]/span").text.split("：",
+                                                                                                                   1)[1]
+            # 状态
+            e = driver.find_element_by_xpath(
+                "/html/body/div/div/section/section/main/div/div[2]/div/div/div/div[2]/div[1]/span/span").text.split(
+                "：", 1)[0]
+            # 班级类型
+            f = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[2]/div[2]/span").text.split("：",
+                                                                                                                   1)[1]
+            # 是否付费
+            g = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[2]/div[3]/span").text.split("：",
+                                                                                                                   1)[1]
+            # 招生开始时间
+            h = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[3]/div[1]/span").text.split("：",
+                                                                                                                   1)[1]
+            # 招生结束时间
+            i = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[3]/div[2]/span").text.split("：",
+                                                                                                                   1)[1]
+            # 分班逻辑
+            j = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[4]/div[1]/span").text.split("：",
+                                                                                                                   1)[1]
+            # 介绍页详情ID
+            k = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[4]/div[2]/span").text.split("：",
+                                                                                                                   1)[1]
+            # 招生链接
+            l = driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/p[1]").text.split("：", 1)[1]
+            assert_not_equal(a, '', '招生计划标题不为空')
+            assert_not_equal(b, '', '招生计划ID不为空')
+            assert_not_equal(c, '', '最后修改时间不为空')
+            assert_not_equal(d, '', '最后修改人不为空')
+            assert_not_equal(e, '', '状态不为空')
+            assert_not_equal(f, '', '班级类型不为空')
+            assert_not_equal(g, '', '是否付费不为空')
+            assert_not_equal(h, '', '招生开始时间不为空')
+            assert_not_equal(i, '', '招生结束时间不为空')
+            assert_not_equal(j, '', '分班逻辑不为空')
+            assert_not_equal(k, '', '介绍页详情ID不为空')
+            assert_not_equal(l, '', '招生链接不为空')
+
+        check_is_not_null(driver)
+
     def tearDown(self) -> None:
         self.driver.close()
         pass
