@@ -59,7 +59,8 @@ class general_assertion_admin():
 
     def check_onion_info_admin(self):
         driver = self.driver
-        driver.assert_exist("//img[@src='/admin10/static/logo.b9b1dd57.png']", "xpath", "通用断言：验证页面左上角是否存在'洋葱logo图'")
+
+        driver.assert_exist("//*[@id=\"logo\"]/a/img", "xpath", "通用断言：验证页面左上角是否存在'洋葱logo图'")
 
         def check_onion_info_admin(driver):
             pro_status = driver.find_element_by_xpath("//*[@id=\"logo\"]/a/h1").text

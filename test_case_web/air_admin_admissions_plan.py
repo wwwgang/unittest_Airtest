@@ -22,7 +22,7 @@ class WSTestcase(unittest.TestCase):
         login = admin_login(driver)
         login.login()
 
-        driver.get("http://10.8.8.8/admin10/configure/admission")
+        driver.get("http://10.8.8.8/admin5/configure/admission")
 
         # 通用断言
         ass = general_assertion_admin(driver)
@@ -34,7 +34,6 @@ class WSTestcase(unittest.TestCase):
 
         driver.assert_exist("//*[@id=\"root\"]/div/section/section/main/div/div/div/div/div[2]/span", "xpath",
                             "校验进入招生计划管理")
-
         driver.assert_exist(
             "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/div/div/div/table/thead/tr/th",
             "xpath", "校验表单“序号”")
@@ -87,18 +86,21 @@ class WSTestcase(unittest.TestCase):
         # 是否付费选择否
         driver.find_element_by_xpath("//input[@value='0']").click()
         # 输入招生计划名称
+        t1 = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         driver.find_element_by_xpath("//input[@placeholder='请输入有效的招生计划名称']").send_keys(
-            "自动化测试" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            "自动化测试" + t1)
         # 招生开始时间
         driver.find_element_by_xpath("//*[@id=\"startTime\"]/div/input").click()
+        t2 = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         driver.find_element_by_xpath("/html/body/div[3]/div/div/div/div/div/div/input").send_keys(
-            time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            t2)
         driver.find_element_by_xpath("//body").click()
 
         # 招生结束时间
         driver.find_element_by_xpath("//*[@id=\"endTime\"]/div/input").click()
+        t3 = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         driver.find_element_by_xpath("/html/body/div[4]/div/div/div/div/div[1]/div/input").send_keys(
-        time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            t3)
         driver.find_element_by_xpath("//body").click()
 
         # 平均分班
@@ -111,7 +113,17 @@ class WSTestcase(unittest.TestCase):
             "/html/body/div[6]/div/div[2]/div/div[2]/div[2]/div/div/div/div/div/div/div[2]/table/tbody/tr[1]/td[1]/span/label/span").click()
         driver.find_element_by_xpath("/html/body/div[6]/div/div[2]/div/div[2]/div[3]/button[2]").click()
         # 保存
-        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[8]/div/div/span/button[1]").click()
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[8]/div/div/span/button[1]").click()
+
+        def check_save_istrue(driver, t1, t2, t3):
+            pro_status = driver.page_source
+            if t1 in pro_status and t2 in pro_status and t3 in pro_status:
+                return True
+            else:
+                return False
+
+        assert_equal(check_save_istrue(driver, t1, t2, t3), True, '通用断言：验证添加数据是否成功')
 
     def tearDown(self) -> None:
         self.driver.close()
