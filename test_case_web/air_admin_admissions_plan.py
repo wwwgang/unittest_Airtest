@@ -15,6 +15,7 @@ class WSTestcase(unittest.TestCase):
         self.driver.implicitly_wait(20)
 
     def test_add_plan(self):
+        ''' 添加招生计划'''
         driver = self.driver
         driver.maximize_window()
         # admin登录
@@ -110,6 +111,7 @@ class WSTestcase(unittest.TestCase):
         assert_equal(check_save_istrue(driver, t1, t2, t3), True, '通用断言：验证添加数据是否成功')
 
     def test_view_plan(self):
+        '''查看招生计划'''
         driver = self.driver
         driver.maximize_window()
         # admin登录
