@@ -194,6 +194,43 @@ class WSTestcase(unittest.TestCase):
 
         check_is_not_null(driver)
 
+    def test_add_plan_list(self):
+        driver = self.driver
+        driver.maximize_window()
+        # admin登录
+        login = admin_login(driver)
+        login.login()
+        driver.get("http://10.8.8.8/admin5/configure/admission")
+        # 通用断言
+        ass = general_assertion_admin(driver)
+        ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
+        ass.check_url_admin()  # '通用断言：验证域名是否存在"http://10.8.8.8"'
+        ass.check_page_source_admin()  # '通用断言：验证页面中是否存在"测试环境"'
+        ass.check_user_info_admin()  # "通用断言：验证页面右上角是否存在'用户头像'" 和 "通用断言：验证页面右上角是否存在'登录用户名'"
+        ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
+
+        # 点击第一条查看
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/div/div/div/table/tbody/tr[1]/td[8]/button").click()
+        # 点击新建
+        driver.find_element_by_xpath("/html/body/div/div/section/section/main/div/div[2]/div/div/div/button").click()
+        # 点击招生年级和版本
+        driver.find_element_by_xpath("//*[@id=\"gradePublisherId\"]/div/div").click()
+        # 选择三年级人教版
+        driver.find_element_by_xpath("/html/body/div[2]/div/div/div/ul/li[1]").click()
+        # 点击关联课程
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[2]/div[2]/div/span/div/button").click()
+        # 选择课程列表中第一条数据
+        # time.sleep(1000)
+        driver.find_element_by_xpath(
+            "/html/body/div[3]/div/div[2]/div/div[2]/div[2]/div[2]/div/div/div/div/div/div[2]/table/tbody/tr[1]/td[1]/span/label/span").click()
+        # 点击保存
+        driver.find_element_by_xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[3]/button[2]").click()
+        # 添加班级
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[3]/div[2]/div/span/div/button").click()
+        pass
+
     def tearDown(self) -> None:
         self.driver.close()
         pass
