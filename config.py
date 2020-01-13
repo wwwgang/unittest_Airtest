@@ -23,7 +23,7 @@ rm_logs = glob.glob(os.path.dirname(__file__) + r'/*log')
 
 rm_reports_txt = os.path.dirname(__file__) + '/report.html'
 
-verification_code = '**'
+verification_code = '****'
 
 onionsToken = r'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZTRjZDgwMzMwY2ExODRlZGQwNGVlOSIsImlhdCI6MTU3NzcwMTg1MCwiZXhwIjoxNTc4OTExNDUwfQ.1bvCTvu_4qGR15f0Mr5kF_97I6f--WBAEbwOKy639q4'
 
