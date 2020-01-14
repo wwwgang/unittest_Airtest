@@ -29,7 +29,67 @@ class WSTestcase(unittest.TestCase):
         ass.check_user_info_admin()  # "通用断言：验证页面右上角是否存在'用户头像'" 和 "通用断言：验证页面右上角是否存在'登录用户名'"
         ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
 
+        driver.assert_exist("//div[@aria-selected='true']", "xpath", "验证是否存在'关键词回复'")
+        driver.assert_exist("//button[@type='button']", "xpath", "验证是否'创建回复'")
+        driver.assert_exist(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div/div[3]/div/div/div/div/div/table/thead/tr/th/span/div/span",
+            "xpath", "验证表单中是否分存在'规则名称'")
+        driver.assert_exist(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div/div[3]/div/div/div/div/div/table/thead/tr/th/span/div/span",
+            "xpath", "验证表单中是否存在'关键字")
+        driver.assert_exist(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div/div[3]/div/div/div/div/div/table/thead/tr/th[3]/span/div/span",
+            "xpath", "验证表单中是否存在'回复内容'")
+        driver.assert_exist(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div/div[3]/div/div/div/div/div/table/thead/tr/th[4]/span/div/span",
+            "xpath", "验证表单中是否存在'更新时间'")
+        driver.assert_exist(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div/div[3]/div/div/div/div/div/table/thead/tr/th[4]/span/div/span",
+            "xpath", "验证表单中是否存在'应用小程序'")
+        driver.assert_exist(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div/div[3]/div/div/div/div/div/table/tbody/tr/td[6]/span/a",
+            "xpath", "验证表单中第一行是否有'编辑'操作按钮")
+        # 点击创建回复
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div[1]/div[2]/button").click()
+        t1 = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
+        # 输入规则名称
+        driver.find_element_by_xpath('//*[@id="name"]').send_keys('自动化测试' + t1)
+        t2 = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
+        # 输入关键字
+        driver.find_element_by_xpath('//*[@id="keyword"]').send_keys('自动化测试' + t2)
+        # 文字
+        driver.find_element_by_xpath('//*[@id="addMsg"]/label[1]').click()
+        # # 图片
+        # driver.find_element_by_xpath('//*[@id="addMsg"]/label[2]').click()
+        # # 超链接
+        # driver.find_element_by_xpath('//*[@id="addMsg"]/label[3]').click()
+        # 输入回复内容
+        t3 = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
+        driver.find_element_by_xpath('//*[@id="textMsg"]').send_keys('自动化测试' + t3)
+        # 点击确定
+        driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div[3]/div/button[2]').click()
+        # 输入内容详情
+        # 选择应用范围
+        driver.find_element_by_xpath('//*[@id="accounts"]/label[1]/span[1]/input').click()
+        # 点击保存
+        driver.find_element_by_xpath(
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div[1]/form/div[6]/div/div/span/button').click()
 
+        def check_name(driver):
+            pro_status = driver.page_source
+            boole_status = False
+            l = [t1, t2]
+            for i in l:
+                if i in pro_status:
+                    continue
+                else:
+                    break
+            else:
+                boole_status = True
+            return boole_status
+
+        assert_equal(check_name(driver), True, "校验规则中是否含有创建成功的规则名称")
 
     def tearDown(self) -> None:
         self.driver.close()
