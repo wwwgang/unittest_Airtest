@@ -8,12 +8,12 @@ import time
 
 
 class web_scroll():
+    '''控制浏览器上下滚动'''
     def __init__(self, driver):
         self.driver = driver
 
     def scroll_top(self):
         # 将滚动条移动到页面的顶部
-
         driver = self.driver
         js = "var q=document.documentElement.scrollTop=100000"
         driver.execute_script(js)
@@ -21,7 +21,6 @@ class web_scroll():
 
     def scroll_bottom(self):
         # 将滚动条移动到页面的底部
-
         driver = self.driver
         js = "var q=document.documentElement.scrollTop=0"
         driver.execute_script(js)
