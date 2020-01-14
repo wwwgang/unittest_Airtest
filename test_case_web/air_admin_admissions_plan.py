@@ -228,8 +228,27 @@ class WSTestcase(unittest.TestCase):
         # 点击保存
         driver.find_element_by_xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[3]/button[2]").click()
         # 添加班级
-        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[3]/div[2]/div/span/div/button").click()
-        pass
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[3]/div[2]/div/span/div/button").click()
+        # 关联班级第一个和第二个
+        driver.find_element_by_xpath(
+            "/html/body/div[4]/div/div[2]/div/div[2]/div[2]/div[2]/div/div/div/div/div/div[2]/table/tbody/tr[1]/td[1]/span/label/span/input").click()
+        driver.find_element_by_xpath(
+            "/html/body/div[4]/div/div[2]/div/div[2]/div[2]/div[2]/div/div/div/div/div/div[2]/table/tbody/tr[2]/td[1]/span/label/span/input").click()
+        # 点击确定
+        driver.find_element_by_xpath("/html/body/div[4]/div/div[2]/div/div[2]/div[3]/button[2]").click()
+        # 删除一个关联班级
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[4]/div/div/div/div/div/table/tbody/tr[2]/td[7]/button").click()
+        # 因测试环境字样挡住元素，将屏幕向上滚动
+        web_scroll(driver).scroll_top()
+        # 关联商品
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[5]/div[2]/div/span/div/button").click()
+
+        # 点击保存
+        # driver.find_element_by_xpath(
+        #     "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[6]/div/div/span/button[1]").click()
 
     def tearDown(self) -> None:
         self.driver.close()
