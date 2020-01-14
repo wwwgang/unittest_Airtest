@@ -91,6 +91,82 @@ class WSTestcase(unittest.TestCase):
 
         assert_equal(check_name(driver), True, "校验规则中是否含有创建成功的规则名称")
 
+    def test_search(self):
+        ''' 查找自动化测试'''
+        driver = self.driver
+        driver.maximize_window()
+        # admin登录
+        admin_login(driver).login()
+        driver.get("http://10.8.8.8/admin5/configure/customer-message")
+        # 通用断言
+        ass = general_assertion_admin(driver)
+        ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
+        ass.check_url_admin()  # '通用断言：验证域名是否存在"http://10.8.8.8"'
+        ass.check_page_source_admin()  # '通用断言：验证页面中是否存在"测试环境"'
+        ass.check_user_info_admin()  # "通用断言：验证页面右上角是否存在'用户头像'" 和 "通用断言：验证页面右上角是否存在'登录用户名'"
+        ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
+        # 查找"自动化测试"
+        driver.find_element_by_xpath(
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div[1]/div[2]/span/input').send_keys(
+            "自动化测试")
+        driver.find_element_by_xpath(
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div[1]/div[2]/span/input').send_keys(
+            Keys.ENTER)
+        driver.assert_exist(
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div[1]/div[3]/div/div/div/div/div/table/tbody/tr[1]/td[6]/span/a[1]',
+            'xpath', "验证表单中是否有编辑按钮")
+
+    def test_change(self):
+        '''更改自动化测试'''
+        driver = self.driver
+        driver.maximize_window()
+        # admin登录
+        admin_login(driver).login()
+        driver.get("http://10.8.8.8/admin5/configure/customer-message")
+        # 通用断言
+        ass = general_assertion_admin(driver)
+        ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
+        ass.check_url_admin()  # '通用断言：验证域名是否存在"http://10.8.8.8"'
+        ass.check_page_source_admin()  # '通用断言：验证页面中是否存在"测试环境"'
+        ass.check_user_info_admin()  # "通用断言：验证页面右上角是否存在'用户头像'" 和 "通用断言：验证页面右上角是否存在'登录用户名'"
+        ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
+        # 查找"自动化测试"
+        driver.find_element_by_xpath(
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div[1]/div[2]/span/input').send_keys(
+            "自动化测试")
+        driver.find_element_by_xpath(
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div[1]/div[2]/span/input').send_keys(
+            Keys.ENTER)
+        # 点击第一条编辑
+        driver.find_element_by_xpath(
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div[1]/div[3]/div/div/div/div/div/table/tbody/tr[1]/td[6]/span/a[1]').click()
+        # 修改规则名称
+        t1 = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
+        driver.find_element_by_xpath('//*[@id="name"]').clear()
+        driver.find_element_by_xpath('//*[@id="name"]').send_keys('自动化测试改' + t1)
+        # 修改关键词
+        t2 = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
+        driver.find_element_by_xpath('//*[@id="keyword"]').clear()
+        driver.find_element_by_xpath('//*[@id="keyword"]').send_keys('自动化测试改' + t2)
+        # 点击保存
+        driver.find_element_by_xpath(
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div[3]/div[1]/form/div[6]/div/div/span/button').click()
+
+        def check_name(driver):
+            pro_status = driver.page_source
+            boole_status = False
+            l = [t1, t2]
+            for i in l:
+                if i in pro_status:
+                    continue
+                else:
+                    break
+            else:
+                boole_status = True
+            return boole_status
+
+        assert_equal(check_name(driver), True, "校验规则中是否含有创建成功的规则名称")
+
     def tearDown(self) -> None:
         self.driver.close()
         pass
