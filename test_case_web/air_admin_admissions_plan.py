@@ -19,8 +19,7 @@ class WSTestcase(unittest.TestCase):
         driver = self.driver
         driver.maximize_window()
         # admin登录
-        login = admin_login(driver)
-        login.login()
+        admin_login(driver).login()
         driver.get("http://10.8.8.8/admin5/configure/admission")
         # 通用断言
         ass = general_assertion_admin(driver)
@@ -245,10 +244,11 @@ class WSTestcase(unittest.TestCase):
         # 关联商品
         driver.find_element_by_xpath(
             "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[5]/div[2]/div/span/div/button").click()
-
+        # 点击确定
+        driver.find_element_by_xpath("/html/body/div[5]/div/div[2]/div/div[2]/div[3]/button[2]").click()
         # 点击保存
-        # driver.find_element_by_xpath(
-        #     "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[6]/div/div/span/button[1]").click()
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[6]/div/div/span/button[1]").click()
 
     def tearDown(self) -> None:
         self.driver.close()
