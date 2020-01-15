@@ -214,7 +214,6 @@ class WSTestcase(unittest.TestCase):
         # 切换分页展示为100
         driver.find_element_by_xpath(
             '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[5]/div[1]/div/div').click()
-        # sleep(1000)
         driver.find_element_by_xpath(
             '/html/body/div/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[5]/div[3]/div/div/div/ul/li[4]').click()
 
@@ -273,7 +272,6 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath(
             "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[2]/div[2]/div/span/div/button").click()
         # 选择课程列表中第一条数据
-        # time.sleep(1000)
         driver.find_element_by_xpath(
             "/html/body/div[3]/div/div[2]/div/div[2]/div[2]/div[2]/div/div/div/div/div/div[2]/table/tbody/tr[1]/td[1]/span/label/span").click()
         # 点击保存
@@ -323,6 +321,13 @@ class WSTestcase(unittest.TestCase):
                 return False
 
         assert_equal(check_plan_list_num(), True, "校验是否添加细则成功")
+
+        # 因测试环境字样挡住元素，将屏幕向上滚动
+        web_scroll(driver).scroll_top()
+
+        # 删除第一条细则
+        driver.find_element_by_xpath('/html/body/div/div/section/section/main/div/div[2]/div/div/div/div[6]/div/div/div/div/div/table/tbody/tr/td[9]/button[2]').click()
+        driver.find_element_by_xpath('/html/body/div[3]/div/div/div/div[2]/div/div/div[2]/button[2]').click()
 
     def tearDown(self) -> None:
         self.driver.close()
