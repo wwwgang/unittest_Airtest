@@ -5,6 +5,7 @@ from test_case_web import *
 
 
 class WSTestcase(unittest.TestCase):
+    '''招生计划'''
     @classmethod
     def setUpClass(cls) -> None:
         if not cli_setup():
