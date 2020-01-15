@@ -2,6 +2,11 @@
 
 import os, glob
 
+'''通用配置'''
+report_path = os.path.dirname(__file__) + '/report.html'
+
+out_files = 'log.html'
+
 '''WEB的配置'''
 chromedrive_path = os.path.dirname(__file__) + '/tools/chromedriver'
 
@@ -14,10 +19,6 @@ airtest_result = log_path + '/__init__.py'
 case_path = os.path.dirname(__file__) + '/test_case_web'
 
 cases_path = glob.glob(case_path + '/air*.py')
-
-out_files = 'log.html'
-
-report_path = os.path.dirname(__file__) + '/report.html'
 
 rm_log = os.path.dirname(__file__) + '/log'
 
@@ -52,3 +53,13 @@ android_log_path = os.path.dirname(__file__) + '/log'
 android_cases_path = glob.glob(android_case_path + '/air*.py')
 
 android_address = ["Android://127.0.0.1:5037", ]
+
+'''IOS的配置'''
+
+ios_case_path = os.path.dirname(__file__) + '/test_case_ios'
+
+ios_log_path = os.path.dirname(__file__) + '/log'
+
+ios_cases_path = glob.glob(ios_case_path + '/air*.py')
+
+ios_address = ["ios:///http://127.0.0.1:8100", ]
