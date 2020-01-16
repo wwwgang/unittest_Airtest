@@ -177,7 +177,7 @@ class WSTestcase(unittest.TestCase):
         #输入招生计划名称
         driver.find_element_by_id("bannerName").send_keys("bannerTest")
         #上传图片
-        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[2]/div[2]/div/span/span/div[1]/span/input").send_keys("/Users/gaoxiafei/PycharmProjects/unittest_Airtest/static/admin_web/banner-primary-spring-festival.png")
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[2]/div[2]/div/span/span/div[1]/span/input").send_keys(admin_web_images+"/banner-primary-spring-festival.png")
         #选择开始时间
         driver.find_element_by_xpath("//*[@id=\"startTime\"]/div/input").click()
         driver.find_element_by_xpath("/html/body/div[3]/div/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[3]/div").click()

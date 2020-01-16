@@ -5,6 +5,8 @@ from test_case_web import *
 
 
 class WSTestcase(unittest.TestCase):
+    '''招生计划'''
+
     @classmethod
     def setUpClass(cls) -> None:
         if not cli_setup():
@@ -19,8 +21,7 @@ class WSTestcase(unittest.TestCase):
         driver = self.driver
         driver.maximize_window()
         # admin登录
-        login = admin_login(driver)
-        login.login()
+        admin_login(driver).login()
         driver.get("http://10.8.8.8/admin5/configure/admission")
         # 通用断言
         ass = general_assertion_admin(driver)
@@ -70,7 +71,7 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath("//*[@id=\"classType\"]/div/div").click()
         driver.find_element_by_xpath("/html/body/div[2]/div/div/div/ul/li[7]").click()
         # 是否付费选择否
-        driver.find_element_by_xpath("//input[@value='0']").click()
+        driver.find_element_by_xpath("//input[@value='1']").click()
         # 输入招生计划名称
         t1 = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         driver.find_element_by_xpath("//input[@placeholder='请输入有效的招生计划名称']").send_keys(
@@ -195,6 +196,7 @@ class WSTestcase(unittest.TestCase):
         check_is_not_null(driver)
 
     def test_add_plan_list(self):
+        '''删除添加招生细则'''
         driver = self.driver
         driver.maximize_window()
         # admin登录
@@ -209,9 +211,57 @@ class WSTestcase(unittest.TestCase):
         ass.check_user_info_admin()  # "通用断言：验证页面右上角是否存在'用户头像'" 和 "通用断言：验证页面右上角是否存在'登录用户名'"
         ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
 
-        # 点击第一条查看
+        # 切换分页展示为100
         driver.find_element_by_xpath(
-            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/div/div/div/table/tbody/tr[1]/td[8]/button").click()
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[5]/div[1]/div/div').click()
+        driver.find_element_by_xpath(
+            '/html/body/div/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[5]/div[3]/div/div/div/ul/li[4]').click()
+
+        for i in range(1, 101):
+            # 序号
+            a = driver.find_element_by_xpath(
+                '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/div/div/div/table/tbody/tr[{}]/td[3]'.format(
+                    i)).text
+            # 是否付费
+            b = driver.find_element_by_xpath(
+                '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/div/div/div/table/tbody/tr[{}]/td[6]'.format(
+                    i)).text
+            # 招生计划名称
+            c = driver.find_element_by_xpath(
+                '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/div/div/div/table/tbody/tr[{}]/td[2]'.format(
+                    i)).text
+            # if a == '春季班' and b == '付费' and '自动化测试' in c:
+            if '自动化测试' in c:
+                j = i
+                break
+
+        # 点击春季班&&付费的查看
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/div/div/div/table/tbody/tr[{}]/td[8]/button".format(
+                j)).click()
+
+        # 删除所有细则
+        # for i in range(1,21):
+        #     try:
+        #         driver.find_element_by_xpath('//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div[6]/div/div/div/div/div/table/tbody/tr/td[9]/button[2]').click()
+        #         driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div[2]/div/div/div[2]/button[2]').click()
+        #     except Exception as e:
+        #         break
+
+        def get_plan_list_count():
+            '''获取当前细则条数'''
+            for i in range(1, 21):
+                try:
+                    a = driver.find_element_by_xpath(
+                        '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div[6]/div/div/div/div/div/table/tbody/tr[{}]/td[1]'.format(
+                            i)).text
+                except Exception as e:
+                    count = i
+                    break
+            return count
+
+        # 获取当前细则条数：
+        num1 = get_plan_list_count()
         # 点击新建
         driver.find_element_by_xpath("/html/body/div/div/section/section/main/div/div[2]/div/div/div/button").click()
         # 点击招生年级和版本
@@ -222,14 +272,62 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath(
             "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[2]/div[2]/div/span/div/button").click()
         # 选择课程列表中第一条数据
-        # time.sleep(1000)
         driver.find_element_by_xpath(
             "/html/body/div[3]/div/div[2]/div/div[2]/div[2]/div[2]/div/div/div/div/div/div[2]/table/tbody/tr[1]/td[1]/span/label/span").click()
         # 点击保存
         driver.find_element_by_xpath("/html/body/div[3]/div/div[2]/div/div[2]/div[3]/button[2]").click()
         # 添加班级
-        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[3]/div[2]/div/span/div/button").click()
-        pass
+        driver.find_element_by_xpath(
+            "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[3]/div[2]/div/span/div/button").click()
+        # 关联班级第一个
+        driver.find_element_by_xpath(
+            "/html/body/div[4]/div/div[2]/div/div[2]/div[2]/div[2]/div/div/div/div/div/div[2]/table/tbody/tr[1]/td[1]/span/label/span/input").click()
+        # 关联班级第二个
+        # driver.find_element_by_xpath(
+        #     "/html/body/div[4]/div/div[2]/div/div[2]/div[2]/div[2]/div/div/div/div/div/div[2]/table/tbody/tr[2]/td[1]/span/label/span/input").click()
+        # 点击确定
+        driver.find_element_by_xpath("/html/body/div[4]/div/div[2]/div/div[2]/div[3]/button[2]").click()
+        # 删除一个关联班级
+        # driver.find_element_by_xpath(
+        #     "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[4]/div/div/div/div/div/table/tbody/tr[2]/td[7]/button").click()
+        # 因测试环境字样挡住元素，将屏幕向上滚动
+        web_scroll(driver).scroll_top()
+        try:
+            # 关联商品
+            driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[5]/div[2]/div/span/div/button").click()
+            # 选择第一个商品
+            driver.find_element_by_xpath(
+                '/html/body/div[5]/div/div[2]/div/div[2]/div[2]/div/div/div/div/div/div/div[2]/table/tbody/tr[1]/td[1]/span/label/span/input').click()
+            # 点击确定
+            driver.find_element_by_xpath("/html/body/div[5]/div/div[2]/div/div[2]/div[3]/button[2]").click()
+        except:
+            pass
+        # 点击保存
+        try:
+            driver.find_element_by_xpath(
+                '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/form/div[5]/div/div/span/button[1]').click()
+        except:
+            driver.find_element_by_xpath(
+                "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[6]/div/div/span/button[1]").click()
+
+        # 获取当前细则条数
+        num2 = get_plan_list_count()
+
+        def check_plan_list_num():
+            if int(num1) + 1 == int(num2):
+                return True
+            else:
+                return False
+
+        assert_equal(check_plan_list_num(), True, "校验是否添加细则成功")
+
+        # 因测试环境字样挡住元素，将屏幕向上滚动
+        web_scroll(driver).scroll_top()
+
+        # 删除第一条细则
+        driver.find_element_by_xpath('/html/body/div/div/section/section/main/div/div[2]/div/div/div/div[6]/div/div/div/div/div/table/tbody/tr/td[9]/button[2]').click()
+        driver.find_element_by_xpath('/html/body/div[3]/div/div/div/div[2]/div/div/div[2]/button[2]').click()
 
     def tearDown(self) -> None:
         self.driver.close()
