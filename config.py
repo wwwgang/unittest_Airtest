@@ -26,7 +26,7 @@ rm_logs = glob.glob(os.path.dirname(__file__) + r'/*log')
 
 rm_reports_txt = os.path.dirname(__file__) + '/report.html'
 # web case静态资源
-admin_web_images = os.path.dirname(__file__) + 'static/admin_web'
+admin_web_images = os.path.dirname(__file__) + '/static/admin_web'
 # 小学web通用验证码
 verification_code = '**'
 
