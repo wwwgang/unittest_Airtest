@@ -16,7 +16,7 @@ class WSTestcase(unittest.TestCase):
         self.driver.implicitly_wait(20)
 
     #查询
-    def test_chakan(self):
+    def test_chaxun(self):
         driver = self.driver
         driver.maximize_window()  # 窗口最大化
 
@@ -34,6 +34,18 @@ class WSTestcase(unittest.TestCase):
         ass.check_user_info_admin()  # "通用断言：验证页面右上角是否存在'用户头像'" 和 "通用断言：验证页面右上角是否存在'登录用户名'"
         ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
         # 以下可编辑
+        # 点击资源配置
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/aside/div/ul/li[4]/div[1]").click()
+        # 点击banner管理
+        driver.find_element_by_xpath("//*[@id=\"/resources$Menu\"]/li[1]").click()
+        #选择状态
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[1]/div/div").click()
+        driver.find_element_by_xpath("/html/body/div[2]/div/div/div/ul/li[2]").click()
+        #选择时间
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/span[3]/div/input").click()
+        driver.find_element_by_xpath("/html/body/div[3]/div/div/div/div/div[1]/div/input").send_keys("2020-02-02 00:00:00")
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/span[4]/div/input").click()
+        driver.find_element_by_xpath("/html/body/div[4]/div/div/div/div/div[1]/div/input").send_keys("2020-02-20 00:00:00")
 
     # 查看
     def test_chakan(self):
@@ -55,9 +67,9 @@ class WSTestcase(unittest.TestCase):
         ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
         # 以下可编辑
         # 点击资源配置
-        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/aside/div/ul/li[3]/div").click()
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/aside/div/ul/li[4]/div[1]").click()
         # 点击banner管理
-        driver.find_element_by_xpath("/html/body/div[1]/div/section/aside/div/ul/li[3]/ul/li[1]/a").click()
+        driver.find_element_by_xpath("//*[@id=\"/resources$Menu\"]/li[1]").click()
         # 点击查看按钮
         driver.find_element_by_xpath(
                 "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[2]/div/div/div/div/div/table/tbody/tr[1]/td[9]/button[1]").click()
@@ -82,9 +94,9 @@ class WSTestcase(unittest.TestCase):
         ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
         # 以下可编辑
         # 点击资源配置
-        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/aside/div/ul/li[3]/div").click()
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/aside/div/ul/li[4]/div[1]").click()
         # 点击banner管理
-        driver.find_element_by_xpath("/html/body/div[1]/div/section/aside/div/ul/li[3]/ul/li[1]/a").click()
+        driver.find_element_by_xpath("//*[@id=\"/resources$Menu\"]/li[1]").click()
         #点击编辑
         driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[2]/div/div/div/div/div/table/tbody/tr[1]/td[9]/button[2]").click()
         # 输入招生计划名称
@@ -92,7 +104,7 @@ class WSTestcase(unittest.TestCase):
         # 上传图片
         driver.find_element_by_xpath(
             "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/form/div[5]/div[2]/div/span/span/div[1]/span/input").send_keys(
-            "/Users/gaoxiafei/PycharmProjects/unittest_Airtest/static/admin_web/banner-primary-spring-festival.png")
+            admin_web_images+"/Banner@2x.png")
         # 选择开始时间
         driver.find_element_by_xpath("//*[@id=\"startTime\"]/div/input").click()
         driver.find_element_by_xpath(
@@ -132,9 +144,9 @@ class WSTestcase(unittest.TestCase):
 
         # 以下可编辑
         # 点击资源配置
-        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/aside/div/ul/li[3]/div").click()
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/aside/div/ul/li[4]/div[1]").click()
         # 点击banner管理
-        driver.find_element_by_xpath("/html/body/div[1]/div/section/aside/div/ul/li[3]/ul/li[1]/a").click()
+        driver.find_element_by_xpath("//*[@id=\"/resources$Menu\"]/li[1]").click()
         #点击下线
         driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/div[2]/div/div/div/div/div/table/tbody/tr[1]/td[9]/button[3]").click()
         #time.sleep(2000)
@@ -166,11 +178,10 @@ class WSTestcase(unittest.TestCase):
         ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
         #以下可修改
         #点击左上角
-        #点击资源配置
-        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/aside/div/ul/li[3]/div").click()
-        #点击banner管理
-        driver.find_element_by_xpath("/html/body/div[1]/div/section/aside/div/ul/li[3]/ul/li[1]/a").click()
-        #查询
+        # 点击资源配置
+        driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/aside/div/ul/li[4]/div[1]").click()
+        # 点击banner管理
+        driver.find_element_by_xpath("//*[@id=\"/resources$Menu\"]/li[1]").click()
         #新建
         driver.find_element_by_xpath(
             "//*[@id=\"root\"]/div/section/section/main/div/div[2]/div/div/div/button").click()
