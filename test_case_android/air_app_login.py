@@ -70,9 +70,3 @@ class WSTestcase(unittest.TestCase):
     @classmethod
     def tearDownClass(cls) -> None:
         pass
-
-# generate html report
-# from airtest.report.report import simple_report
-# simple_report(__file__, logpath="/Users/yangcong/Desktop/andlog")
-
-# unittest.main()
