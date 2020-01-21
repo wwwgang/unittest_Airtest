@@ -6,6 +6,8 @@ import logging
 
 
 class WSTestcase(unittest.TestCase):
+    '''app登录'''
+
     @classmethod
     def setUpClass(cls) -> None:
         if not cli_setup():
@@ -17,7 +19,7 @@ class WSTestcase(unittest.TestCase):
         start_app('com.yangcong345.android.phone')
 
     def test_login(self):
-        # 验证码登录
+        '''验证码登录'''
         poco = self.poco
         # 华为的权限始终允许
         poco("com.android.packageinstaller:id/permission_allow_button").wait_for_appearance()
