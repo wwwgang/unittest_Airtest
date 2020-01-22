@@ -11,5 +11,5 @@ from config import chromedrive_path, log_path, verification_code,admin_web_image
 from tools.admin_login import admin_login
 from tools.web_scroll import web_scroll
 import os
-from tools.general_assertion import general_assertion_admin
+from tools.general_assertion import General_Assertion_Admin
 import datetime

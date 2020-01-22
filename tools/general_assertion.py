@@ -1,7 +1,9 @@
 from airtest.core.api import *
 
 
-class general_assertion_admin():
+class General_Assertion_Admin():
+    '''admin后台通用断言'''
+
     def __init__(self, driver):
         self.driver = driver
 
@@ -73,3 +75,19 @@ class general_assertion_admin():
         driver.find_element_by_xpath("//*[@id=\"root\"]/div/section/section/header/div/span").click()
         assert_equal(check_onion_info_admin(driver), True, '通用断言：验证页面左上角是否存在"洋葱数学-小学"')
         return driver
+
+
+class General_Assertion_Onion_App():
+    """洋葱安卓app通用断言"""
+    def __init__(self, poco):
+        self.poco = poco
+        pass
+
+    def check_login(self):
+        poco = self.poco
+        poco(text="tabIcon 我的").wait_for_appearance()
+        poco(text="tabIcon 我的").click()
+        user_name = poco("android.widget.LinearLayout").offspring("android:id/content").offspring(
+            "com.yangcong345.android.phone:id/flFragmentContainer").offspring("android.widget.RelativeLayout").child(
+            "android.webkit.WebView").offspring("mainContent").child("android.view.View")[0].exists()
+        assert_equal(user_name, True, "用户名是否存在")

@@ -24,7 +24,7 @@ class WSTestcase(unittest.TestCase):
         admin_login(driver).login()
         driver.get("http://10.8.8.8/admin5/configure/admission")
         # 通用断言
-        ass = general_assertion_admin(driver)
+        ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
         ass.check_url_admin()  # '通用断言：验证域名是否存在"http://10.8.8.8"'
         ass.check_page_source_admin()  # '通用断言：验证页面中是否存在"测试环境"'
@@ -120,7 +120,7 @@ class WSTestcase(unittest.TestCase):
         login.login()
         driver.get("http://10.8.8.8/admin5/configure/admission")
         # 通用断言
-        ass = general_assertion_admin(driver)
+        ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
         ass.check_url_admin()  # '通用断言：验证域名是否存在"http://10.8.8.8"'
         ass.check_page_source_admin()  # '通用断言：验证页面中是否存在"测试环境"'
@@ -204,7 +204,7 @@ class WSTestcase(unittest.TestCase):
         login.login()
         driver.get("http://10.8.8.8/admin5/configure/admission")
         # 通用断言
-        ass = general_assertion_admin(driver)
+        ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
         ass.check_url_admin()  # '通用断言：验证域名是否存在"http://10.8.8.8"'
         ass.check_page_source_admin()  # '通用断言：验证页面中是否存在"测试环境"'
