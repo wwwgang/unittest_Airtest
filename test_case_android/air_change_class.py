@@ -162,8 +162,7 @@ class WSTestcase(unittest.TestCase):
         assert_equal(yangcongIcon, True, "判断洋葱icon是否存在")
 
     def tearDown(self) -> None:
-        pass
-        # stop_app('com.yangcong345.android.phone')
+        stop_app('com.yangcong345.android.phone')
 
     @classmethod
     def tearDownClass(cls) -> None:
