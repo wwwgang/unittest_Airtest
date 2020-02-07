@@ -22,7 +22,7 @@ class WSTestcase(unittest.TestCase):
         driver.maximize_window()
         # admin登录
         admin_login(driver).login()
-        driver.get("http://10.8.8.8/admin5/class/class-list")
+        driver.get("http://10.8.8.8/admin10/class/class-list")
         # 通用断言
         ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
@@ -100,7 +100,7 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath('/html/body/div[11]/div/div/div/ul/li[1]').click()
         # 点击保存
         driver.find_element_by_xpath(
-            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/form/div[13]/div/div/span/button').click()
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/form/div[14]/div/div/span/button').click()
 
         # 搜索以创建班级
         driver.find_element_by_xpath('//*[@id="name"]').send_keys(t + '-自动化测试-王刚')
@@ -123,7 +123,7 @@ class WSTestcase(unittest.TestCase):
         driver.maximize_window()
         # admin登录
         admin_login(driver).login()
-        driver.get("http://10.8.8.8/admin5/class/class-list")
+        driver.get("http://10.8.8.8/admin10/class/class-list")
         # 通用断言
         ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
@@ -150,16 +150,16 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath('/html/body/div[3]/div/div/div/ul/li[contains(text(),\'小学内部-手动添加\')]').click()
         # 手动输入手机号码
         driver.find_element_by_xpath(
-            '/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[2]/div/div/span/div/label[1]/span[1]/input').click()
+            '/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[3]/div/div/span/div/label[1]/span[1]/input').click()
         # 输入用户手机号
         driver.find_element_by_xpath(
-            '/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[3]/div/div/span/div/div/div/ul/li/div/input').send_keys(
+            '/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[4]/div/div/span/div/div/div/ul/li/div/input').send_keys(
             '18618262234')
         driver.find_element_by_xpath(
-            '/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[3]/div/div/span/div/div/div/ul/li/div/input').send_keys(
+            '/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[4]/div/div/span/div/div/div/ul/li/div/input').send_keys(
             Keys.ENTER)
         # 点击确定
-        driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[5]/div/button').click()
+        driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div[2]/form/div[6]/div/button').click()
 
         def check_add_user_istrue():
             pro_status = driver.find_element_by_xpath(
@@ -177,7 +177,7 @@ class WSTestcase(unittest.TestCase):
         driver.maximize_window()
         # admin登录
         admin_login(driver).login()
-        driver.get("http://10.8.8.8/admin5/class/class-list")
+        driver.get("http://10.8.8.8/admin10/class/class-list")
         # 通用断言
         ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'

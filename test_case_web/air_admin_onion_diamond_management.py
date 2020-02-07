@@ -22,7 +22,7 @@ class WSTestcase(unittest.TestCase):
         driver.maximize_window()
         # admin登录
         admin_login(driver).login()
-        driver.get("http://10.8.8.8/admin5/dimand/manage")
+        driver.get("http://10.8.8.8/admin10/dimand/manage")
         # 通用断言
         ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
@@ -96,7 +96,7 @@ class WSTestcase(unittest.TestCase):
         driver.maximize_window()
         # admin登录
         admin_login(driver).login()
-        driver.get("http://10.8.8.8/admin5/dimand/manage")
+        driver.get("http://10.8.8.8/admin10/dimand/manage")
         # 通用断言
         ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'

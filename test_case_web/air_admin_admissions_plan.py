@@ -22,7 +22,7 @@ class WSTestcase(unittest.TestCase):
         driver.maximize_window()
         # admin登录
         admin_login(driver).login()
-        driver.get("http://10.8.8.8/admin5/configure/admission")
+        driver.get("http://10.8.8.8/admin10/configure/admission")
         # 通用断言
         ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
@@ -118,7 +118,7 @@ class WSTestcase(unittest.TestCase):
         # admin登录
         login = admin_login(driver)
         login.login()
-        driver.get("http://10.8.8.8/admin5/configure/admission")
+        driver.get("http://10.8.8.8/admin10/configure/admission")
         # 通用断言
         ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
@@ -202,7 +202,7 @@ class WSTestcase(unittest.TestCase):
         # admin登录
         login = admin_login(driver)
         login.login()
-        driver.get("http://10.8.8.8/admin5/configure/admission")
+        driver.get("http://10.8.8.8/admin10/configure/admission")
         # 通用断言
         ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
@@ -213,9 +213,9 @@ class WSTestcase(unittest.TestCase):
 
         # 切换分页展示为100
         driver.find_element_by_xpath(
-            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[5]/div[1]/div/div').click()
+            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[7]/div[1]/div/div/div').click()
         driver.find_element_by_xpath(
-            '/html/body/div/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[5]/div[3]/div/div/div/ul/li[4]').click()
+            '/html/body/div/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[7]/div[3]/div/div/div/ul/li[4]').click()
 
         for i in range(1, 101):
             # 序号
