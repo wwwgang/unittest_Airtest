@@ -48,6 +48,8 @@ admin_web_images = os.path.dirname(__file__) + '/static/admin_web'
 # 小学web通用验证码
 verification_code = '**'
 
+airtest_all_result = glob.glob('air*.log')
+
 '''ADNROID的配置'''
 android_case_path = os.path.dirname(__file__) + '/test_case_android'
 
