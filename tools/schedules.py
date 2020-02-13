@@ -42,4 +42,4 @@ def run_web_case():
 
 
 if __name__ == '__main__':
-    schedule.every(10).minutes.do(run_web_case())
+    schedule.every(30).minutes.do(run_web_case())
