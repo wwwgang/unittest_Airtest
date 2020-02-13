@@ -3,6 +3,27 @@
 # datetime:2020/2/10 4:27 下午
 # software: PyCharm
 import requests, json, datetime, time
+from config import chromedrive_path
+from selenium.webdriver.chrome.options import Options
+
+
+def report_result():
+    from selenium import webdriver
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    driver = webdriver.Chrome(chromedrive_path, chrome_options=chrome_options)
+    driver.get('http://localhost:5000/unittest_report')
+    total = driver.find_element_by_xpath('//*[@id="total_row"]/td[2]').text
+    success = driver.find_element_by_xpath('//*[@id="total_row"]/td[3]').text
+    error = driver.find_element_by_xpath('//*[@id="total_row"]/td[4]').text
+    exception = driver.find_element_by_xpath('//*[@id="total_row"]/td[5]').text
+    result = {
+        'total': total,
+        'success': success,
+        'error': error,
+        'exception': exception,
+    }
+    return result
 
 
 def send_dingTalk_msg():
@@ -11,13 +32,15 @@ def send_dingTalk_msg():
         'Content-Type': 'application/json',
     }
     now_time = datetime.datetime.fromtimestamp(time.time() + 86400).strftime("%Y-%m-%d %H:%M:%S")
-
+    result = report_result()
     data = json.dumps(
         {
             "msgtype": "markdown",
             "markdown": {
                 "title": "测试报告",
                 "text": "#### 测试报告\n" +
+                        "> 总数 {} 通过 {} 失败 {} 错误 {} \n\n".format(result.get('total'), result.get('success'),
+                                                                result.get('error'), result.get('exception')) +
                         "> 点击 [查看unittest测试报告](http://192.168.28.17:5000/unittest_report)\n\n" +
                         "> 点击 [生成airtest测试报告](http://192.168.28.17:5000/export_web_report)\n\n" +
                         "> 点击 [查看airtest测试报告](http://192.168.28.17:8000)\n\n" +
@@ -35,5 +58,6 @@ def send_dingTalk_msg():
 
 
 if __name__ == '__main__':
+    # report_result()
     r = send_dingTalk_msg()
     print(r.text)
