@@ -13,7 +13,10 @@ class WSTestcase(unittest.TestCase):
             auto_setup(__file__, logdir=log_path + '/' + os.path.basename(__file__))
 
     def setUp(self) -> None:
-        self.driver = WebChrome(chromedrive_path)
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        self.driver = WebChrome(chromedrive_path, chrome_options=chrome_options)
+        # self.driver = WebChrome(chromedrive_path)
         self.driver.implicitly_wait(20)
 
     def test_add_plan(self):
@@ -326,7 +329,8 @@ class WSTestcase(unittest.TestCase):
         web_scroll(driver).scroll_top()
 
         # 删除第一条细则
-        driver.find_element_by_xpath('/html/body/div/div/section/section/main/div/div[2]/div/div/div/div[6]/div/div/div/div/div/table/tbody/tr/td[9]/button[2]').click()
+        driver.find_element_by_xpath(
+            '/html/body/div/div/section/section/main/div/div[2]/div/div/div/div[6]/div/div/div/div/div/table/tbody/tr/td[9]/button[2]').click()
         driver.find_element_by_xpath('/html/body/div[3]/div/div/div/div[2]/div/div/div[2]/button[2]').click()
 
     def tearDown(self) -> None:

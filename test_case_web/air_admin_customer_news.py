@@ -6,13 +6,15 @@ from test_case_web import *
 
 class WSTestcase(unittest.TestCase):
     '''客服消息'''
+
     @classmethod
     def setUpClass(cls) -> None:
         if not cli_setup():
             auto_setup(__file__, logdir=log_path + '/' + os.path.basename(__file__))
 
     def setUp(self) -> None:
-        self.driver = WebChrome(chromedrive_path)
+        self.driver = WebChrome(chromedrive_path, chrome_options=chrome_options)
+        # self.driver = WebChrome(chromedrive_path)
         self.driver.implicitly_wait(20)
 
     def test_create_reply(self):
