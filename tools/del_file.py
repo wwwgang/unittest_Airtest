@@ -11,19 +11,19 @@ def del_file():
     try:
         shutil.rmtree(rm_log)
     except Exception as e:
-        print(e)
+        pass
     try:
         for log in rm_logs:
             try:
                 shutil.rmtree(log)
             except Exception as e:
-                print(e)
+                pass
     except Exception as e:
-        print(e)
+        pass
     try:
         os.remove(rm_reports_txt)
     except Exception as e:
-        print(e)
+        pass
 
 
 if __name__ == '__main__':
