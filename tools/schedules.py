@@ -20,7 +20,7 @@ def perform(inc):
     task()
 
 
-def main(inc=600):
+def main(inc=1200):
     s.enter(0, 0, perform, (inc,))
     s.run()
 
