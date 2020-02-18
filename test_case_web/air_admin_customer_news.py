@@ -14,6 +14,7 @@ class WSTestcase(unittest.TestCase):
 
     def setUp(self) -> None:
         self.driver = WebChrome(chromedrive_path, chrome_options=chrome_options)
+        self.driver.set_window_size(2560, 1440)
         # self.driver = WebChrome(chromedrive_path)
         self.driver.implicitly_wait(20)
 

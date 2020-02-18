@@ -15,6 +15,7 @@ class WSTestcase(unittest.TestCase):
 
     def setUp(self) -> None:
         self.driver = WebChrome(chromedrive_path, chrome_options=chrome_options)
+        self.driver.set_window_size(2560, 1440)
         # self.driver = WebChrome(chromedrive_path)
         self.driver.implicitly_wait(20)
 
@@ -34,7 +35,8 @@ class WSTestcase(unittest.TestCase):
         ass.check_user_info_admin()  # "通用断言：验证页面右上角是否存在'用户头像'" 和 "通用断言：验证页面右上角是否存在'登录用户名'"
         ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
         # 点击新建
-        driver.find_element_by_xpath('//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/button').click()
+        # sleep(1000)
+        driver.find_element_by_xpath('//button[@class="ant-btn antd-pro-pages-resources-styles-customBtn ant-btn-primary"]').click()
         # banner名称
         t = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
         driver.find_element_by_xpath('//*[@id="bannerName"]').send_keys('自动化测试' + t)
@@ -44,10 +46,12 @@ class WSTestcase(unittest.TestCase):
             admin_web_images + '/Banner@2x.png')
         # 开始时间
         driver.find_element_by_xpath('//*[@id="startTime"]/div').click()
-        driver.find_element_by_xpath('/html/body/div[3]/div/div/div/div/div[1]/div/input').send_keys(t)
+        driver.find_element_by_xpath('//input[@class="ant-calendar-input "]').send_keys(t)
+        driver.find_element_by_xpath('//a[@class="ant-calendar-ok-btn"]').click()
         # 结束时间
         driver.find_element_by_xpath('//*[@id="endTime"]/div').click()
-        driver.find_element_by_xpath('/html/body/div[4]/div/div/div/div/div[1]/div/input').send_keys(t)
+        driver.find_element_by_xpath('//input[@class="ant-calendar-input "]').send_keys(t)
+        driver.find_element_by_xpath('//a[@class="ant-calendar-ok-btn"]').click()
         # 跳转链接
         driver.find_element_by_xpath(
             '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/form/div[5]/div[2]/div/span').click()
