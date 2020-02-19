@@ -179,7 +179,7 @@ class WSTestcase(unittest.TestCase):
         driver.maximize_window()
         # admin登录
         admin_login(driver).login()
-        driver.get("http://10.8.8.8/admin10/class/class-list")
+        driver.get("http://10.8.8.8/admin7/class/class-list")
         # 通用断言
         ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
@@ -223,9 +223,8 @@ class WSTestcase(unittest.TestCase):
             '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div[2]/div/div/div/div/div[2]/div/div/table/tbody/tr[{}]/td/a[2]'.format(
                 class_num1)).click()
         # 失效原因
-        t = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
-        driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div/div[2]/textarea').send_keys(
-            t + '-自动化测试-王刚')
+        driver.find_element_by_xpath('//*[@id="classInvalidReason"]/div/div').click()
+        driver.find_element_by_xpath('/html/body/div[3]/div/div/div/ul/li[3]').click()
         # 点击确定
         driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div[3]/div/button[2]').click()
 
