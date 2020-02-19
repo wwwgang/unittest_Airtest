@@ -99,7 +99,7 @@ class WSTestcase(unittest.TestCase):
         assert_equal(check_add_course(), True, '校验是否添加课程成功')
 
     def tearDown(self) -> None:
-        self.driver.close()
+        self.driver.quit()
         pass
 
     @classmethod

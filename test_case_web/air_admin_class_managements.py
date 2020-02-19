@@ -248,7 +248,7 @@ class WSTestcase(unittest.TestCase):
         assert_equal(check_del_class(class_list), True, '校验是否失效成功')
 
     def tearDown(self) -> None:
-        self.driver.close()
+        self.driver.quit()
         pass
 
     @classmethod

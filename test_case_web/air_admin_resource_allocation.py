@@ -106,7 +106,7 @@ class WSTestcase(unittest.TestCase):
             '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/form/div[8]/div/div/span/button[2]').click()
 
     def tearDown(self) -> None:
-        self.driver.close()
+        self.driver.quit()
         pass
 
     @classmethod

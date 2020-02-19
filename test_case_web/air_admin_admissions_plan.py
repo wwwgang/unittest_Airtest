@@ -333,7 +333,7 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath('/html/body/div[3]/div/div/div/div[2]/div/div/div[2]/button[2]').click()
 
     def tearDown(self) -> None:
-        self.driver.close()
+        self.driver.quit()
         pass
 
     @classmethod

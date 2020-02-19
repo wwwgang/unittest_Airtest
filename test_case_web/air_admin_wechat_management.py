@@ -114,7 +114,7 @@ class WSTestcase(unittest.TestCase):
         assert_equal(check_del_wechat_istrue(), True, "校验是否删除成功")
 
     def tearDown(self) -> None:
-        self.driver.close()
+        self.driver.quit()
         pass
 
     @classmethod

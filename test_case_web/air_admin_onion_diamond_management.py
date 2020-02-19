@@ -170,7 +170,7 @@ class WSTestcase(unittest.TestCase):
         assert_equal(check_increase_istrue(local_pro_status), True, "校验是否添加葱钻成功")
 
     def tearDown(self) -> None:
-        self.driver.close()
+        self.driver.quit()
         pass
 
     @classmethod
