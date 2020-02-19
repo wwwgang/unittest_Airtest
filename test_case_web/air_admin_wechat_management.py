@@ -110,6 +110,7 @@ class WSTestcase(unittest.TestCase):
                         return False
                 else:
                     continue
+            return True
 
         assert_equal(check_del_wechat_istrue(), True, "校验是否删除成功")
 
