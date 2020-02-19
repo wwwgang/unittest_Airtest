@@ -29,8 +29,6 @@ def report_result():
 def send_dingTalk_msg():
     result = report_result()
     if int(result.get('error')) + int(result.get('exception')):
-        print('无异常')
-    else:
         webHook = 'https://oapi.dingtalk.com/robot/send?access_token=f2b04f372e55708392455511bff3ac2aff7ee49065a5a8b2cbd85e5295faf9cf'
         headers = {
             'Content-Type': 'application/json',
@@ -55,9 +53,10 @@ def send_dingTalk_msg():
                 }
             }
         )
-
         r = requests.post(url=webHook, headers=headers, data=data)
         return r
+    else:
+        return '无异常'
 
 
 if __name__ == '__main__':
