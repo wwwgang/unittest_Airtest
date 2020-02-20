@@ -5,7 +5,7 @@ from test_case_web import *
 
 
 class WSTestcase(unittest.TestCase):
-    '''微信管理'''
+    '''运营管理'''
 
     @classmethod
     def setUpClass(cls) -> None:
