@@ -215,10 +215,11 @@ class WSTestcase(unittest.TestCase):
 
         # 切换分页展示为100
         driver.find_element_by_xpath(
-            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[7]/div[1]/div/div/div').click()
-        driver.find_element_by_xpath(
-            '/html/body/div/div/section/section/main/div/div[2]/div/div/div/div/div/div/ul/li[7]/div[3]/div/div/div/ul/li[4]').click()
-
+            '//div[@class="ant-pagination-options-size-changer ant-select ant-select-enabled"]').click()
+        lis = driver.find_elements_by_xpath('//li[@class="ant-select-dropdown-menu-item"]')
+        for li in lis:
+            if '100' in li.text:
+                li.click()
         for i in range(1, 101):
             # 序号
             a = driver.find_element_by_xpath(
