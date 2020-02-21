@@ -187,6 +187,37 @@ class WSTestcase(unittest.TestCase):
 
         assert_equal(check_submit(), True, '修改风控金额是否成功')
 
+    def test_risk_mannagement(self):
+        '''风控查询'''
+        driver = self.driver
+        driver.maximize_window()  # 窗口最大化
+        # admin登录
+        login = admin_login(driver)
+        login.login()
+        driver.get("http://10.8.8.8/admin10/activities/risk-control")  # 进入首页
+        # 通用断言
+        ass = General_Assertion_Admin(driver)
+        ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
+        ass.check_url_admin()  # '通用断言：验证域名是否存在"http://10.8.8.8"'
+        ass.check_page_source_admin()  # '通用断言：验证页面中是否存在"测试环境"'
+        ass.check_user_info_admin()  # "通用断言：验证页面右上角是否存在'用户头像'" 和 "通用断言：验证页面右上角是否存在'登录用户名'"
+        ass.check_onion_info_admin()  # "通用断言：验证页面左上角是否存在'洋葱logo图'" 和 '通用断言：验证页面左上角是否存在"洋葱数学-小学"'
+
+        # 用户手机号：
+        driver.find_element_by_xpath('//input').send_keys('15600801884')
+        # 查询账户
+        driver.find_element_by_xpath('//button[@class="ant-btn ant-btn-primary"]').click()
+
+        def check_data():
+            pro_status = driver.find_element_by_xpath('//tbody').text
+            status = '元'
+            if status in pro_status:
+                return True
+            else:
+                return False
+
+        assert_equal(check_data(), True, '校验表单中是否有数据')
+
     def tearDown(self) -> None:
         self.driver.quit()
         pass
