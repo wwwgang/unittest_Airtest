@@ -37,18 +37,16 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath('//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/button').click()
         # 输入微信账号
         t = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
-        driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[1]/div[2]/input').send_keys(
-            '自动化测试' + t)
-        # 输入微信昵称
-        driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[2]/input').send_keys(
-            '自动化测试' + t)
+        # *微信账号：
+        driver.find_element_by_xpath('//input[@placeholder="输入微信账号"]').send_keys('自动化测试' + t)
+        # *微信昵称：
+        driver.find_element_by_xpath('//input[@placeholder="输入微信昵称"]').send_keys('自动化测试' + t)
         # 输入微信二维码
-        driver.find_element_by_xpath(
-            '/html/body/div[2]/div/div[2]/div/div[2]/div[2]/div[3]/div[2]/span/div[1]/span/input').send_keys(
+        driver.find_element_by_xpath('//input[@accept=".png,.jpg,.jpeg"]').send_keys(
             admin_web_images + '/wechat_qrcode.jpeg')
+        sleep(5)
         # 点击保存
-        driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div[3]/div/button[2]').click()
-
+        driver.find_element_by_xpath('//button[@class="ant-btn ant-btn-primary"]').click()
         # 搜索添加后的数据
         driver.find_element_by_xpath(
             '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div[1]/div/span/span/input').send_keys(
@@ -93,9 +91,8 @@ class WSTestcase(unittest.TestCase):
         a = driver.find_element_by_xpath(
             '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div[2]/div/div/div/div/div/div/table/tbody/tr[1]/td[2]').text
         # 失效第一个微信号
-        driver.find_element_by_xpath(
-            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/div[2]/div/div/div/div/div/div/table/tbody/tr[1]/td[5]/button[2]').click()
-        driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div/div/div[2]/button[2]').click()
+        driver.find_elements_by_xpath('//button[@class="ant-btn ant-btn-link"]')[1].click()
+        driver.find_element_by_xpath('//button[@class="ant-btn ant-btn-primary"]').click()
 
         def check_del_wechat_istrue():
             # 获取表单中所有text,切割，遍历，校验是否为已失效
