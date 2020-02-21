@@ -166,6 +166,8 @@ class WSTestcase(unittest.TestCase):
         def check_add_user_istrue():
             pro_status = driver.find_element_by_xpath(
                 '//*[@id="root"]/div/section/section/main/div/div[2]/div/div[2]/div/div[2]/div/div/div/div/div[2]/div/div/table/tbody').text
+            log('pro_status:' + str(pro_status))
+            print('pro_status:' + str(pro_status))
             if '18618262234' in pro_status:
                 return True
             else:
@@ -231,9 +233,7 @@ class WSTestcase(unittest.TestCase):
         def check_del_class(class_list):
             '''校验失效班级是否成功'''
             class_info_list = str(class_list[1]).split(' ')
-            print(class_info_list)
             class_name = str(class_info_list[0]) + ' ' + str(class_info_list[1])
-            print(class_name)
             driver.find_element_by_xpath('//*[@id="name"]').clear()
             driver.find_element_by_xpath('//*[@id="name"]').send_keys(class_name)
             driver.find_element_by_xpath(

@@ -87,6 +87,8 @@ class WSTestcase(unittest.TestCase):
         def check_increase_istrue(local_pro_status):
             pro_status = driver.find_element_by_xpath(
                 '//*[@id="root"]/div/section/section/main/div/div[3]/div/div[3]/div/div/div/div/div/table/tbody/tr[1]/td[4]').text
+            log('pro_status:' + pro_status + ',status:' + local_pro_status)
+            print('pro_status:' + pro_status + ',status:' + local_pro_status)
             if int(pro_status) - int(local_pro_status) == 10:
                 return True
             else:
@@ -162,6 +164,8 @@ class WSTestcase(unittest.TestCase):
         def check_increase_istrue(local_pro_status):
             pro_status = driver.find_element_by_xpath(
                 '//*[@id="root"]/div/section/section/main/div/div[3]/div/div[3]/div/div/div/div/div/table/tbody/tr[1]/td[4]').text
+            log('pro_status:' + pro_status + ',status:' + local_pro_status)
+            print('pro_status:' + pro_status + ',status:' + local_pro_status)
             if int(pro_status) - int(local_pro_status) == -10:
                 return True
             else:
