@@ -83,10 +83,10 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath('//*[@id="extra"]').send_keys('自动化测试' + t)
         # 点击确定
         driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div[3]/div/button[2]').click()
+        sleep(5)
 
         def check_increase_istrue(local_pro_status):
-            pro_status = driver.find_element_by_xpath(
-                '//*[@id="root"]/div/section/section/main/div/div[3]/div/div[3]/div/div/div/div/div/table/tbody/tr[1]/td[4]').text
+            pro_status = driver.find_element_by_xpath('//tr/td[4]').text
             log('pro_status:' + pro_status + ',status:' + local_pro_status)
             print('pro_status:' + pro_status + ',status:' + local_pro_status)
             if int(pro_status) - int(local_pro_status) == 10:
@@ -160,10 +160,10 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath('//*[@id="extra"]').send_keys('自动化测试' + t)
         # 点击确定
         driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div/div[2]/div[3]/div/button[2]').click()
+        sleep(5)
 
         def check_increase_istrue(local_pro_status):
-            pro_status = driver.find_element_by_xpath(
-                '//*[@id="root"]/div/section/section/main/div/div[3]/div/div[3]/div/div/div/div/div/table/tbody/tr[1]/td[4]').text
+            pro_status = driver.find_element_by_xpath('//tr/td[4]').text
             log('pro_status:' + pro_status + ',status:' + local_pro_status)
             print('pro_status:' + pro_status + ',status:' + local_pro_status)
             if int(pro_status) - int(local_pro_status) == -10:
