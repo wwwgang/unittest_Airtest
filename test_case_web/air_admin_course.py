@@ -56,7 +56,6 @@ class WSTestcase(unittest.TestCase):
         # 支持多题型
         driver.find_element_by_xpath('//*[@id="isMultiProblems"]/label[1]/span[1]/input').click()
         # 继续添加
-        # sleep(1000)
         driver.find_element_by_xpath(
             '//*[@id="root"]/div/section/section/main/div/div[2]/div/div/div/form/div[5]/div/div/div/div/div/div/table/tbody/tr/td[9]/button[1]').click()
         # 课程内容选择
@@ -74,7 +73,7 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath('/html/body/div[9]/div/div/div/ul/li[1]').click()
         # 点击筛选
         driver.find_element_by_xpath('/html/body/div[5]/div/div[2]/div/div[2]/div[2]/button').click()
-        ul = driver.find_element_by_xpath('/html/body/div[5]/div/div[2]/div/div[2]/div[2]/ul')
+        ul = driver.find_element_by_xpath('//ul')
         spans = ul.find_elements_by_xpath('//span[@class="ant-tree-checkbox"]')
         for span in spans:
             span.click()
