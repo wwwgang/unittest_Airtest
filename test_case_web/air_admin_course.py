@@ -20,13 +20,13 @@ class WSTestcase(unittest.TestCase):
         self.driver.implicitly_wait(20)
 
     def test_add_course(self):
-        '''添加课程'''
+        '''添加课程并失效'''
         driver = self.driver
         driver.maximize_window()  # 窗口最大化
         # admin登录
         login = admin_login(driver)
         login.login()
-        driver.get("http://10.8.8.8/admin10/course/list")  # 进入首页
+        driver.get("http://10.8.8.8/admin10/course/list")  # 进入课程列表
         # 通用断言
         ass = General_Assertion_Admin(driver)
         ass.check_title_admin()  # '通用断言：验证标题是否存在"洋葱数学-小学"'
@@ -84,8 +84,7 @@ class WSTestcase(unittest.TestCase):
         driver.find_element_by_xpath('//button[@type="submit"]').click()
         # 查询创建的课程
         driver.find_element_by_xpath('//*[@id="name"]').send_keys('自动化测试' + t)
-        driver.find_element_by_xpath(
-            '//*[@id="root"]/div/section/section/main/div/div[2]/div/div[1]/div/div/div/form/div[2]/div/div/div/div/span/button[1]').click()
+        driver.find_element_by_xpath('//button[@class="ant-btn ant-btn-primary" and @type="submit"]').click()
 
         def check_add_course():
             pro_status = driver.find_element_by_xpath(
@@ -97,6 +96,21 @@ class WSTestcase(unittest.TestCase):
                 return False
 
         assert_equal(check_add_course(), True, '校验是否添加课程成功')
+
+        # 点击失效
+        driver.find_element_by_xpath('//a[text()="失效"]').click()
+        # 点击确认
+        driver.find_element_by_xpath('//button[@class="ant-btn ant-btn-primary ant-btn-sm"]').click()
+
+        def check_del_course():
+            pro_status = driver.page_source
+            status = '已失效'
+            if status in pro_status:
+                return True
+            else:
+                return False
+
+        assert_equal(check_del_course(), True, '校验是否失效班课程成功')
 
     def tearDown(self) -> None:
         self.driver.quit()
